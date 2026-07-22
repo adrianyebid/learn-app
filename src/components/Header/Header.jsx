@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import Navigation from '../Navigation/Navigation'
+import { PATHS } from '../../routes/paths'
 
 /**
  * Header - top bar with logo, navigation and Sign In / Join Us buttons
@@ -13,12 +15,12 @@ function Header({ navItems, onSignIn, onJoinUs }) {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <a href="#" className="flex items-center gap-2">
+        <Link to={PATHS.home} className="flex items-center gap-2">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand font-heading text-lg font-bold text-white">
             L
           </span>
           <span className="font-heading text-lg font-semibold">learn-app</span>
-        </a>
+        </Link>
 
         <div className="flex items-center gap-6">
           <Navigation
