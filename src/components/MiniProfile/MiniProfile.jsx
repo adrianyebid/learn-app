@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { PATHS } from '../../routes/paths'
 
 /**
  * Mini-profile - opened from the header profile logo. Reveals a small panel
@@ -28,12 +30,13 @@ function MiniProfile({ user = { name: 'Jane Cooper', email: 'jane@example.com' }
               <p className="text-sm font-semibold text-ink">{user.name}</p>
               <p className="text-xs text-muted">{user.email}</p>
             </div>
-            <a
-              href="#"
+            <Link
+              to={PATHS.myAccount}
+              onClick={() => setOpen(false)}
               className="block rounded-lg px-3 py-2 text-sm text-ink hover:bg-brand-light"
             >
               My Account
-            </a>
+            </Link>
 
             <label className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-ink hover:bg-brand-light">
               Night Mode

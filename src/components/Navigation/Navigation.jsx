@@ -1,32 +1,30 @@
-/**
- * Navigation - shared menu. Items are passed via props and support an
- * active state. On mobile (< 600px) it turns into a vertical drawer that
- * slides in from the left; open/close is controlled from outside.
- */
-const DEFAULT_ITEMS = [
-  { label: 'Home', href: '#', active: true },
-  { label: 'Blog', href: '#' },
-  { label: 'Pricing', href: '#' },
-  { label: 'Features', href: '#' },
-]
+import { NavLink } from 'react-router-dom'
+import { NAV_ITEMS } from '../../routes/paths'
 
-function Navigation({ items = DEFAULT_ITEMS, open = false, onClose }) {
+/**
+ * Navigation - shared menu driven by the central route list. Uses react-router
+ * NavLink so the active item is highlighted automatically from the URL. On
+ * mobile (< 600px) it turns into a vertical drawer that slides in from the
+ * left; open/close is controlled from outside.
+ */
+function Navigation({ items = NAV_ITEMS, open = false, onClose }) {
   return (
     <>
       {/* Desktop menu */}
       <nav className="hidden md:block">
         <ul className="flex items-center gap-8">
           {items.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                aria-current={item.active ? 'page' : undefined}
-                className={`text-sm font-medium transition-colors hover:text-brand ${
-                  item.active ? 'text-brand' : 'text-ink'
-                }`}
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors hover:text-brand ${
+                    isActive ? 'text-brand' : 'text-ink'
+                  }`
+                }
               >
                 {item.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -50,17 +48,18 @@ function Navigation({ items = DEFAULT_ITEMS, open = false, onClose }) {
         >
           <ul className="flex flex-col gap-2">
             {items.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
                   onClick={onClose}
-                  aria-current={item.active ? 'page' : undefined}
-                  className={`block rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-brand-light ${
-                    item.active ? 'bg-brand-light text-brand' : 'text-ink'
-                  }`}
+                  className={({ isActive }) =>
+                    `block rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-brand-light ${
+                      isActive ? 'bg-brand-light text-brand' : 'text-ink'
+                    }`
+                  }
                 >
                   {item.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>

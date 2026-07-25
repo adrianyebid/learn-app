@@ -1,14 +1,11 @@
+import { Link } from 'react-router-dom'
+
 /**
  * Breadcrumbs - clickable trail representing the user's location.
- * Items come from props; the last item is the current (non-clickable) page.
+ * Items come from props ({ label, href? }); the last item, or any item
+ * without an href, is the current (non-clickable) page.
  */
-const DEFAULT = [
-  { label: 'Home', href: '#' },
-  { label: 'My Account', href: '#' },
-  { label: 'Edit Profile' },
-]
-
-function Breadcrumbs({ items = DEFAULT }) {
+function Breadcrumbs({ items = [] }) {
   return (
     <nav aria-label="Breadcrumb">
       <ol className="flex flex-wrap items-center gap-2 text-sm">
@@ -21,9 +18,9 @@ function Breadcrumbs({ items = DEFAULT }) {
                   {item.label}
                 </span>
               ) : (
-                <a href={item.href} className="text-muted hover:text-brand">
+                <Link to={item.href} className="text-muted hover:text-brand">
                   {item.label}
-                </a>
+                </Link>
               )}
               {!last && <span className="text-muted">/</span>}
             </li>
