@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import RootLayout from './layouts/RootLayout'
 import ProtectedRoute from './routes/ProtectedRoute'
-import { PATHS } from './routes/paths'
+import { PATHS, ROUTES } from './routes/paths'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Training from './pages/Training/Training'
@@ -11,6 +11,16 @@ import RegistrationVerification from './pages/RegistrationVerification/Registrat
 import MyAccount from './pages/MyAccount/MyAccount'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import NotFound from './pages/NotFound/NotFound'
+
+// Element for each protected path. Which paths are protected is decided in a
+// single place — the `protected: true` flag on ROUTES in routes/paths.js —
+// so this map only has to answer "what does it render", never "is it guarded".
+const PROTECTED_ELEMENTS = {
+  [PATHS.myAccount]: <MyAccount />,
+  [PATHS.changePassword]: <ChangePassword />,
+}
+
+const protectedRoutes = ROUTES.filter((route) => route.protected)
 
 /**
  * Application router. Every view is nested under the shared RootLayout so the
@@ -35,10 +45,15 @@ function App() {
           element={<RegistrationVerification />}
         />
 
-        {/* Protected routes (require authentication) */}
+        {/* Protected routes (require authentication) — derived from ROUTES */}
         <Route element={<ProtectedRoute />}>
-          <Route path={PATHS.myAccount} element={<MyAccount />} />
-          <Route path={PATHS.changePassword} element={<ChangePassword />} />
+          {protectedRoutes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={PROTECTED_ELEMENTS[route.path]}
+            />
+          ))}
         </Route>
 
         {/* Fallback: 404 Page Not Found */}

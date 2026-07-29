@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import { PATHS } from '../../routes/paths'
+import { useToast } from '../../toast/ToastContext'
 
 const EMPTY = { current: '', next: '', confirm: '' }
 
@@ -11,6 +12,7 @@ const EMPTY = { current: '', next: '', confirm: '' }
  */
 function ChangePassword() {
   const navigate = useNavigate()
+  const { notify } = useToast()
   const [values, setValues] = useState(EMPTY)
   const [errors, setErrors] = useState({})
 
@@ -32,6 +34,7 @@ function ChangePassword() {
     const nextErrors = validate()
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length) return
+    notify.success('Password updated successfully')
     navigate(PATHS.myAccount)
   }
 
@@ -40,7 +43,7 @@ function ChangePassword() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-sm ring-1 ring-line"
+        className="w-full max-w-sm rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-line"
       >
         <h1 className="text-2xl font-semibold text-ink">Change password</h1>
         <p className="mt-1 text-sm text-muted">Keep your account secure.</p>

@@ -5,8 +5,8 @@
  */
 function Table({ columns = [], rows = [] }) {
   return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line">
-      <table className="w-full text-left text-sm">
+    <div className="overflow-x-auto rounded-2xl bg-surface shadow-sm ring-1 ring-line">
+      <table className="w-full min-w-[480px] text-left text-sm">
         <thead className="bg-brand-light text-brand">
           <tr>
             {columns.map((col) => (

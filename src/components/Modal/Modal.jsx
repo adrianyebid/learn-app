@@ -12,7 +12,7 @@ function Modal({ open, title, children, onClose, footer }) {
       <div
         role="dialog"
         aria-modal="true"
-        className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl"
+        className="relative w-full max-w-md rounded-2xl bg-surface p-6 shadow-xl"
       >
         <div className="flex items-start justify-between">
           <h3 className="text-lg font-semibold text-ink">{title}</h3>

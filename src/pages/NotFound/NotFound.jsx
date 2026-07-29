@@ -7,7 +7,7 @@ function NotFound() {
   const navigate = useNavigate()
 
   return (
-    <section className="rounded-2xl bg-white p-12 text-center shadow-sm ring-1 ring-line">
+    <section className="rounded-2xl bg-surface p-12 text-center shadow-sm ring-1 ring-line">
       <p className="font-heading text-6xl font-bold text-brand">404</p>
       <h1 className="mt-4 text-2xl font-semibold text-ink">Page not found</h1>
       <p className="mt-2 text-muted">

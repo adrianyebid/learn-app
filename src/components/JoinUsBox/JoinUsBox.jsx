@@ -10,7 +10,7 @@ function JoinUsBox({
   onSelect,
 }) {
   return (
-    <div className="flex flex-col rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-line">
+    <div className="flex flex-col rounded-2xl bg-surface p-6 text-center shadow-sm ring-1 ring-line">
       <h3 className="text-xl font-semibold text-ink">Register as {role}</h3>
       <p className="mt-3 grow text-sm text-muted">{description}</p>
       <div className="mt-6">

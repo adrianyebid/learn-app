@@ -14,7 +14,7 @@ function Box({
 }) {
   return (
     <article
-      className={`overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line ${className}`}
+      className={`overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-line ${className}`}
     >
       {image && (
         <img src={image} alt="" className="h-44 w-full object-cover" />

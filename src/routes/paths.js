@@ -26,7 +26,7 @@ export const PATHS = {
 export const ROUTES = [
   { path: PATHS.home, label: 'Home', showInNav: true },
   { path: PATHS.training, label: 'Training', showInNav: true },
-  { path: PATHS.joinUs, label: 'Join Us', showInNav: true },
+  { path: PATHS.joinUs, label: 'Join Us' },
   { path: PATHS.myAccount, label: 'My Account', showInNav: true, protected: true },
   { path: PATHS.login, label: 'Login' },
   { path: PATHS.registration, label: 'Registration' },

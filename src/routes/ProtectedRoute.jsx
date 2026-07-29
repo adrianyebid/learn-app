@@ -10,7 +10,6 @@ import { PATHS } from './paths'
 function ProtectedRoute() {
   const { isAuthenticated } = useAuth()
   const location = useLocation()
-
   if (!isAuthenticated) {
     return <Navigate to={PATHS.login} state={{ from: location }} replace />
   }

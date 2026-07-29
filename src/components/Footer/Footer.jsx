@@ -19,7 +19,7 @@ function Footer({ blocks = NAV_BLOCKS }) {
   const [email, setEmail] = useState('')
 
   return (
-    <footer className="mt-16 border-t border-line bg-white">
+    <footer className="mt-16 border-t border-line bg-surface">
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-10 md:grid-cols-5">
           {/* Logo + subscription */}
@@ -104,7 +104,7 @@ function Footer({ blocks = NAV_BLOCKS }) {
               value={lang}
               onChange={(e) => setLang(e.target.value)}
               aria-label="Change language"
-              className="rounded-lg border border-line bg-white px-2 py-1 text-xs outline-none focus:border-brand"
+              className="rounded-lg border border-line bg-surface px-2 py-1 text-xs outline-none focus:border-brand"
             >
               <option value="EN">English</option>
               <option value="ES">Español</option>
