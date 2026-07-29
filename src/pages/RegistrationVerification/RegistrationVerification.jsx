@@ -30,7 +30,7 @@ function RegistrationVerification() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="w-full max-w-sm rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-line"
+        className="w-full max-w-sm rounded-2xl bg-surface p-8 text-center shadow-sm ring-1 ring-line"
       >
         <h1 className="text-2xl font-semibold text-ink">Verify your email</h1>
         <p className="mt-2 text-sm text-muted">

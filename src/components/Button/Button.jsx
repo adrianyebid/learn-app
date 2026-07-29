@@ -4,14 +4,19 @@
  * Supports variants and the states standard / hover / pressed / disabled.
  */
 const VARIANTS = {
+  // "Button prime" in the Visily style guide
   primary:
-    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark/90 disabled:bg-brand/40',
+    'bg-brand text-white hover:bg-brand-hover active:bg-brand-pressed disabled:bg-brand/40',
+  // "Button secondary"
   secondary:
-    'bg-brand-light text-brand hover:bg-brand/20 active:bg-brand/30 disabled:opacity-50',
+    'bg-secondary text-white hover:bg-secondary-hover active:bg-secondary-pressed disabled:bg-secondary/40',
+  // "Button important"
+  danger:
+    'bg-danger text-white hover:bg-danger-hover active:bg-danger-pressed disabled:bg-danger/40',
   outline:
-    'bg-transparent text-brand border border-brand hover:bg-brand-light active:bg-brand/20 disabled:opacity-50',
+    'bg-transparent text-brand border border-brand hover:bg-brand-light active:bg-brand/10 disabled:opacity-40',
   ghost:
-    'bg-transparent text-ink hover:bg-black/5 active:bg-black/10 disabled:opacity-50',
+    'bg-transparent text-ink hover:bg-black/5 active:bg-black/10 disabled:opacity-40',
 }
 
 const SIZES = {

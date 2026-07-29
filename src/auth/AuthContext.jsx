@@ -8,13 +8,12 @@ import { createContext, useContext, useMemo, useState } from 'react'
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
-
+  const [user, setUser] = useState()
   const value = useMemo(
     () => ({
       user,
       isAuthenticated: user !== null,
-      login: (nextUser = { name: 'Jane Cooper' }) => setUser(nextUser),
+      login: (nextUser = { name: 'Adrian Rincon' }) => setUser(nextUser),
       logout: () => setUser(null),
     }),
     [user],

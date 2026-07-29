@@ -1,64 +1,109 @@
-/* ---- Custom fonts ---- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+/* ---- Custom fonts (per Visily style guide: Montserrat + Poppins) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
 @import 'tailwindcss';
 
+/* Class-based dark mode: `dark:` utilities activate under a `.dark` ancestor
+ * (toggled on <html> by ThemeContext) instead of the OS color-scheme media
+ * query, so the Night Mode switch has something real to control. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ---- Design tokens (theme) ---- */
 @theme {
-  --font-sans: 'Inter', system-ui, sans-serif;
+  /* Single breakpoint at 600px per spec (default Tailwind "md" is 768px) */
+  --breakpoint-md: 37.5rem;
+
+  --font-sans: 'Montserrat', system-ui, sans-serif;
   --font-heading: 'Poppins', system-ui, sans-serif;
 
-  --color-brand: #6a5cff;
-  --color-brand-dark: #4b3fd6;
+  /* "Button prime" from the Visily style guide */
+  --color-brand: #6354d9;
+  --color-brand-hover: #4d3ed3;
+  --color-brand-pressed: #3e2dc7;
   --color-brand-light: #eceaff;
+
+  /* "Button secondary" */
+  --color-secondary: #61cfa5;
+  --color-secondary-hover: #2f9c72;
+  --color-secondary-pressed: #278264;
+
+  /* "Button important" */
+  --color-danger: #ed5d56;
+  --color-danger-hover: #d20c12;
+  --color-danger-pressed: #b90b11;
+
+  /* Semantic surface tokens: reassigned under .dark below, so every
+   * bg-surface / bg-page / text-ink utility repaints automatically when the
+   * theme toggles — no per-component "dark:" classes needed. */
   --color-ink: #1c1c28;
   --color-muted: #6b7280;
   --color-line: #e5e7eb;
+  --color-surface: #ffffff;
+  --color-page: #f7f7fb;
 }
 
-/* ---- Minimal CSS reset ---- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Dark theme palette — overrides the tokens above while `.dark` is present
+ * on <html>. Every utility that reads var(--color-*) picks this up live. */
+:root.dark {
+  color-scheme: dark;
+  --color-ink: #eceef1;
+  --color-muted: #9aa1ac;
+  --color-line: #2f3340;
+  --color-surface: #1b1e27;
+  --color-page: #12141b;
+  --color-brand-light: #2a2560;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
+/*
+ * Unlayered rules win over @layer rules regardless of specificity, so the
+ * reset must live inside `@layer base` — otherwise it silently cancels every
+ * Tailwind utility (p-*, m-*, ...), which is what was happening before.
+ */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  font-family: var(--font-sans);
-  color: var(--color-ink);
-  background: #f7f7fb;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
-}
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  line-height: 1.2;
-}
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-page);
+    transition: background-color 0.2s, color 0.2s;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+  }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-button {
-  font: inherit;
-  cursor: pointer;
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button {
+    font: inherit;
+    cursor: pointer;
+  }
 }

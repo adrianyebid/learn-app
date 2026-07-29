@@ -49,7 +49,7 @@ function RegistrationForm({ onSubmit }) {
 
   if (result) {
     return (
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-line">
+      <div className="w-full max-w-md rounded-2xl bg-surface p-8 text-center shadow-sm ring-1 ring-line">
         <h2 className="text-2xl font-semibold text-ink">You're all set! 🎉</h2>
         <p className="mt-1 text-sm text-muted">Use these credentials to log in.</p>
         <dl className="mt-6 space-y-3 text-left">
@@ -64,7 +64,7 @@ function RegistrationForm({ onSubmit }) {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="w-full max-w-md rounded-2xl bg-white p-8 shadow-sm ring-1 ring-line"
+      className="w-full max-w-md rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-line"
     >
       <h2 className="text-2xl font-semibold text-ink">Create your account</h2>
 
@@ -76,7 +76,7 @@ function RegistrationForm({ onSubmit }) {
             type="button"
             onClick={() => setRole(r)}
             className={`rounded-md py-2 text-sm font-medium transition-colors ${
-              role === r ? 'bg-white text-brand shadow-sm' : 'text-brand/70'
+              role === r ? 'bg-surface text-brand shadow-sm' : 'text-brand/70'
             }`}
           >
             {r}

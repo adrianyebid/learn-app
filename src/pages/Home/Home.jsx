@@ -33,7 +33,7 @@ function Home() {
 
   return (
     <section>
-      <div className="rounded-2xl bg-white p-10 text-center shadow-sm ring-1 ring-line">
+      <div className="rounded-2xl bg-surface p-10 text-center shadow-sm ring-1 ring-line">
         <h1 className="text-3xl font-bold text-ink">Welcome to learn-app</h1>
         <p className="mx-auto mt-3 max-w-xl text-muted">
           Grow your skills with hands-on training. Explore courses, join as a

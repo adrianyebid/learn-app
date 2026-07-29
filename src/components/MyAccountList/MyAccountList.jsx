@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Button from '../Button/Button'
+import Modal from '../Modal/Modal'
 
 /**
  * My Account List - personal dashboard showing account details with a
@@ -7,11 +8,11 @@ import Button from '../Button/Button'
  * Data is passed via props (pure w.r.t. props).
  */
 const DEFAULT_USER = {
-  firstName: 'Jane',
-  lastName: 'Cooper',
-  email: 'jane.cooper@example.com',
-  phone: '+1 202 555 0134',
-  address: '4517 Washington Ave, Kentucky',
+  firstName: 'Adrian',
+  lastName: 'Rincon',
+  email: 'adrian.rincon@example.com',
+  phone: '+57 300 456 7890',
+  address: 'Carrera 15 #93-47, Bogotá, Colombia',
 }
 
 const FIELDS = [
@@ -22,17 +23,23 @@ const FIELDS = [
   { key: 'address', label: 'Address' },
 ]
 
-function MyAccountList({ user = DEFAULT_USER, onSave }) {
+function MyAccountList({ user = DEFAULT_USER, onSave, onDelete }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(user)
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
 
   const save = () => {
     setEditing(false)
     onSave?.(draft)
   }
 
+  const confirmDelete = () => {
+    setConfirmingDelete(false)
+    onDelete?.()
+  }
+
   return (
-    <div className="w-full max-w-lg rounded-2xl bg-white p-8 shadow-sm ring-1 ring-line">
+    <div className="w-full max-w-lg rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-line">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="grid h-14 w-14 place-items-center rounded-full bg-brand-light text-lg font-semibold text-brand">
@@ -47,9 +54,18 @@ function MyAccountList({ user = DEFAULT_USER, onSave }) {
           </div>
         </div>
         {!editing && (
-          <Button variant="outline" size="sm" onClick={() => setEditing(true)}>
-            Edit Profile
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={() => setEditing(true)}>
+              Edit Profile
+            </Button>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => setConfirmingDelete(true)}
+            >
+              Delete Account
+            </Button>
+          </div>
         )}
       </div>
 
@@ -89,6 +105,29 @@ function MyAccountList({ user = DEFAULT_USER, onSave }) {
           </Button>
         </div>
       )}
+
+      <Modal
+        open={confirmingDelete}
+        title="Delete account"
+        onClose={() => setConfirmingDelete(false)}
+        footer={
+          <>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setConfirmingDelete(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="danger" size="sm" onClick={confirmDelete}>
+              Delete Account
+            </Button>
+          </>
+        }
+      >
+        This will permanently delete your account and sign you out. This
+        action cannot be undone.
+      </Modal>
     </div>
   )
 }

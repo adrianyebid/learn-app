@@ -38,7 +38,7 @@ function LoginForm({ onSubmit }) {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-sm ring-1 ring-line"
+      className="w-full max-w-sm rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-line"
     >
       <h2 className="text-2xl font-semibold text-ink">Welcome back</h2>
       <p className="mt-1 text-sm text-muted">Sign in to your account</p>
