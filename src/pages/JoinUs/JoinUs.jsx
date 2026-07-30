@@ -17,7 +17,7 @@ const ROLES = [
 function JoinUs() {
   const navigate = useNavigate()
 
-  const startRegistration = () => navigate(PATHS.registration)
+  const startRegistration = (role) => navigate(PATHS.registration, { state: { role } })
 
   return (
     <section>

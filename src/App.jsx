@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import RootLayout from './layouts/RootLayout'
 import ProtectedRoute from './routes/ProtectedRoute'
+import RoleRoute from './routes/RoleRoute'
 import { PATHS, ROUTES } from './routes/paths'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
@@ -10,14 +11,29 @@ import Registration from './pages/Registration/Registration'
 import RegistrationVerification from './pages/RegistrationVerification/RegistrationVerification'
 import MyAccount from './pages/MyAccount/MyAccount'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import MyTrainings from './pages/MyTrainings/MyTrainings'
+import AddTraining from './pages/AddTraining/AddTraining'
+import AddTrainer from './pages/AddTrainer/AddTrainer'
 import NotFound from './pages/NotFound/NotFound'
 
 // Element for each protected path. Which paths are protected is decided in a
 // single place — the `protected: true` flag on ROUTES in routes/paths.js —
 // so this map only has to answer "what does it render", never "is it guarded".
+// Role-restricted pages additionally wrap themselves in <RoleRoute>.
 const PROTECTED_ELEMENTS = {
   [PATHS.myAccount]: <MyAccount />,
   [PATHS.changePassword]: <ChangePassword />,
+  [PATHS.myTrainings]: <MyTrainings />,
+  [PATHS.addTraining]: (
+    <RoleRoute roles={['ROLE_TRAINEE']}>
+      <AddTraining />
+    </RoleRoute>
+  ),
+  [PATHS.addTrainer]: (
+    <RoleRoute roles={['ROLE_TRAINEE']}>
+      <AddTrainer />
+    </RoleRoute>
+  ),
 }
 
 const protectedRoutes = ROUTES.filter((route) => route.protected)

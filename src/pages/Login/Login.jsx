@@ -6,17 +6,17 @@ import { PATHS } from '../../routes/paths'
 /**
  * Login view. On success it authenticates the session and returns the user to
  * the page they were trying to reach (set by the route guard), defaulting to
- * My Account.
+ * Home per the login spec.
  */
 function Login() {
   const navigate = useNavigate()
   const location = useLocation()
   const { login } = useAuth()
 
-  const redirectTo = location.state?.from?.pathname ?? PATHS.myAccount
+  const redirectTo = location.state?.from?.pathname ?? PATHS.home
 
-  const handleSubmit = (values) => {
-    login({ name: values.username })
+  const handleSubmit = async (values) => {
+    await login(values)
     navigate(redirectTo, { replace: true })
   }
 

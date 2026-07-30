@@ -15,6 +15,9 @@ export const PATHS = {
   changePassword: '/change-password',
   registration: '/registration',
   registrationVerification: '/registration-verification',
+  myTrainings: '/my-account/trainings',
+  addTraining: '/my-account/trainings/add',
+  addTrainer: '/my-account/add-trainer',
 }
 
 /**
@@ -32,6 +35,9 @@ export const ROUTES = [
   { path: PATHS.registration, label: 'Registration' },
   { path: PATHS.registrationVerification, label: 'Registration Verification' },
   { path: PATHS.changePassword, label: 'Change Password', protected: true },
+  { path: PATHS.myTrainings, label: 'Trainings', protected: true },
+  { path: PATHS.addTraining, label: 'Add Training', protected: true, roles: ['ROLE_TRAINEE'] },
+  { path: PATHS.addTrainer, label: 'Add Trainer', protected: true, roles: ['ROLE_TRAINEE'] },
 ]
 
 /** Lookup of "/path" -> "Label", used to resolve breadcrumb labels. */
